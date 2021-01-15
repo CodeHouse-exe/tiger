@@ -33,7 +33,7 @@ async def _8Ball(ctx, *, question):
 @client.command()
 async def spam(ctx, amount = 10):
     time.sleep(2)
-    for index in range(0, amount):
+    for i in range(0, amount):
         await ctx.send(f"Spam")
 
 @client.command(aliases = ["surprise", "rr"])
@@ -45,12 +45,11 @@ async def rickroll(ctx):
         await ctx.send(word)
 
 @client.command()
-async def clear(ctx, amount = 5):
-    await ctx.channel.purge(limit = amount)
+async def kick(ctx, member : discord.Member, *, reason = None):
+    await member.kick(reason = reason)
 
 @client.command()
-async def quit(ctx):
-    await ctx.send("tiger is going offline.")
-    quit()
+async def clear(ctx, amount = 5):
+    await ctx.channel.purge(limit = amount)
 
 client.run(tokens.token)
