@@ -52,6 +52,17 @@ async def kick(ctx, member : discord.Member, *, reason = None):
 async def ban(ctx, member : discord.Member, *, reason = None):
     await member.ban(reason = reason)
 
+@client.command()
+async def unban(ctx, *, member):
+    bannedUsers = await ctx.guild.bans()
+    memberName, memberDiscriminator = member.split("#")
+
+    for banEntry in bannedUsers:
+        user = banEntry.user
+
+        if (user.name, user.discriminator) == (memberName, memberDiscriminator):
+            await ctx.guild.unban(user)
+            await ctx.send(f"User {user.name}#{user.discriminator} successfully unbanned. Welcome back!")
 
 @client.command()
 async def clear(ctx, amount = 5):
