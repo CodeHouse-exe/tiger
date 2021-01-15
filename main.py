@@ -47,15 +47,22 @@ async def rickroll(ctx):
 @client.command()
 async def kick(ctx, member : discord.Member, *, reason = None):
     await member.kick(reason = reason)
+    await ctx.send(f"Kicked {member.mention} ")
+    if reason == None:
+        print(f"Kicked {member.name}#{member.discriminator} - no reason given.")
+    elif reason != None:
+        print(f"Kicked {member.name}#{member.discriminator} for {reason}")
 
 @client.command()
 async def ban(ctx, member : discord.Member, *, reason = None):
     if reason == None:
         await member.ban(reason = reason)
         await ctx.send(f"Banned {member.mention} for no reason, apparently.")
+        print(f"Banned {member.mention} - no reason given.")
     elif reason != None:
         await member.ban(reason = reason)
         await ctx.send(f"Banned {member.mention} for {reason}")
+        print(f"Banned {member.mention} for {reason}")
 
 @client.command()
 async def unban(ctx, *, member):
