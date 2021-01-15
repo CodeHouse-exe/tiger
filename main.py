@@ -50,7 +50,12 @@ async def kick(ctx, member : discord.Member, *, reason = None):
 
 @client.command()
 async def ban(ctx, member : discord.Member, *, reason = None):
-    await member.ban(reason = reason)
+    if reason == None:
+        await member.ban(reason = reason)
+        await ctx.send(f"Banned {member.name}#{member.discriminator} for no reason, apparently.")
+    elif reason != None:
+        await member.ban(reason = reason)
+        await ctx.send(f"Banned {member.name}#{member.discriminator} for {reason}")
 
 @client.command()
 async def unban(ctx, *, member):
