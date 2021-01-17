@@ -13,17 +13,17 @@ async def on_ready():
     if config.customStatus == True:
         await client.change_presence(status = discord.Status.online, activity = discord.Game(config.status))
     
-    print("Client ready.")
+    print(f'[{time.time}] Client ready.')
 
 if config.messageOnJoin == True:
     @client.event
     async def on_member_join(member):
-        print(f'{member} ' + config.onMemberJoin)
+        print(f'[{time.time}] {member} ' + config.onMemberJoin)
 
 if config.messageOnRemove == True:
     @client.event
     async def on_member_remove(member):
-        print(f'{member} ' + config.onMemberRemove)
+        print(f'[{time.time}] {member} ' + config.onMemberRemove)
 
 @client.event
 async def on_command_error(ctx, error):
@@ -65,9 +65,9 @@ async def kick(ctx, member : discord.Member, *, reason = None):
     await member.kick(reason = reason)
     await ctx.send(f"Kicked {member.mention} ")
     if reason == None:
-        print(f"Kicked {member.name}#{member.discriminator} - no reason given.")
+        print(f'[{time.time}] Kicked {member.name}#{member.discriminator} - no reason given.')
     elif reason != None:
-        print(f"Kicked {member.name}#{member.discriminator} for {reason}")
+        print(f"[{time.time}] Kicked {member.name}#{member.discriminator} for {reason}")
 
 @client.command()
 @commands.bot_has_permissions(ban_members = True)
@@ -75,11 +75,11 @@ async def ban(ctx, member : discord.Member, *, reason = None):
     if reason == None:
         await member.ban(reason = reason)
         await ctx.send(f"Banned {member.mention} for no reason, apparently.")
-        print(f"Banned {member.mention} - no reason given.")
+        print(f"[{time.time}] Banned {member.mention} - no reason given.")
     elif reason != None:
         await member.ban(reason = reason)
         await ctx.send(f"Banned {member.mention} for {reason}")
-        print(f"Banned {member.mention} for {reason}")
+        print(f"[{time.time}] Banned {member.mention} for {reason}")
 
 @client.command()
 @commands.bot_has_permissions(ban_members = True)
