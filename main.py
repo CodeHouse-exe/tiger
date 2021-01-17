@@ -26,7 +26,7 @@ if config.messageOnRemove == True:
         print(f'{member} ' + config.onMemberRemove)
 
 @client.event
-async def onCommandError(ctx, error):
+async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
         await ctx.send('I know no such thing.')
 
@@ -60,6 +60,7 @@ async def rickroll(ctx):
         await ctx.send(word)
 
 @client.command()
+@commands.bot_has_permissions(kick_members = True)
 async def kick(ctx, member : discord.Member, *, reason = None):
     await member.kick(reason = reason)
     await ctx.send(f"Kicked {member.mention} ")
@@ -69,6 +70,7 @@ async def kick(ctx, member : discord.Member, *, reason = None):
         print(f"Kicked {member.name}#{member.discriminator} for {reason}")
 
 @client.command()
+@commands.bot_has_permissions(ban_members = True)
 async def ban(ctx, member : discord.Member, *, reason = None):
     if reason == None:
         await member.ban(reason = reason)
@@ -80,6 +82,7 @@ async def ban(ctx, member : discord.Member, *, reason = None):
         print(f"Banned {member.mention} for {reason}")
 
 @client.command()
+@commands.bot_has_permissions(ban_members = True)
 async def unban(ctx, *, member):
     bannedUsers = await ctx.guild.bans()
     memberName, memberDiscriminator = member.split("#")
@@ -92,6 +95,7 @@ async def unban(ctx, *, member):
             await ctx.send(f"User {user.name}#{user.discriminator} successfully unbanned. Welcome back!")
 
 @client.command()
+@commands.bot_has_permissions(manage_messages = True)
 async def clear(ctx, amount : int):
     await ctx.channel.purge(limit = amount)
 
@@ -99,6 +103,8 @@ async def clear(ctx, amount : int):
 async def clearError(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
         await ctx.send("So, uh, how many messages do you want to delete? Let's try that again shall we?")
+    elif isinstance(error, commands.MissingPermissions):
+        await ctx.send("You can't do that. Ask an admin")
 
 @tasks.loop(seconds = 10)
 async def changeStatus():
