@@ -1,6 +1,7 @@
 import config
 import discord
-from discord.ext import commands
+from discord.ext import commands, tasks
+from itertools import cycle
 import random
 import tokens
 import time
@@ -36,8 +37,9 @@ async def _8Ball(ctx, *, question):
 @client.command()
 async def spam(ctx, amount = 10):
     time.sleep(2)
-    for i in range(0, amount):
+    for index in range(0, amount):
         await ctx.send(f"Spam")
+        index += 1
 
 @client.command(aliases = ["surprise", "rr"])
 async def rickroll(ctx):
@@ -80,7 +82,12 @@ async def unban(ctx, *, member):
             await ctx.send(f"User {user.name}#{user.discriminator} successfully unbanned. Welcome back!")
 
 @client.command()
-async def clear(ctx, amount = 5):
+async def clear(ctx, amount : int):
     await ctx.channel.purge(limit = amount)
+
+@tasks.loop(seconds = 10)
+async def changeStatus():
+    status = cycle([config.status])
+    await client.change_presence(activity = discord.Game(next(status)))
 
 client.run(tokens.token)
