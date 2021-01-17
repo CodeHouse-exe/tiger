@@ -9,6 +9,9 @@ client = commands.Bot(command_prefix = config.prefix)
 
 @client.event
 async def on_ready():
+    if config.customStatus == True:
+        await client.change_presence(status = discord.Status.online, activity = discord.Game(config.status))
+    
     print("Client ready.")
 
 if config.messageOnJoin == True:
