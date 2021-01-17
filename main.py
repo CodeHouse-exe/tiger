@@ -25,6 +25,11 @@ if config.messageOnRemove == True:
     async def on_member_remove(member):
         print(f'{member} ' + config.onMemberRemove)
 
+@client.event
+async def onCommandError(ctx, error):
+    if isinstance(error, commands.CommandNotFound):
+        await ctx.send('I know no such thing.')
+
 @client.command()
 async def ping(ctx):
     await ctx.send(f"Pong! {round(client.latency * 1000)}ms")
@@ -35,11 +40,16 @@ async def _8Ball(ctx, *, question):
     await ctx.send(f"Question: {question} \nAnswer: {random.choice(responses)}")
 
 @client.command()
-async def spam(ctx, amount = 10):
+async def spam(ctx, amount : int):
     time.sleep(2)
     for index in range(0, amount):
         await ctx.send(f"Spam")
         index += 1
+
+@spam.error
+async def spamError(ctx, error):
+    if isinstance(error, commands.MissingRequiredArgument):
+        await ctx.send("So, uh, how many messages do you want me to send? Let's try that again shall we?")
 
 @client.command(aliases = ["surprise", "rr"])
 async def rickroll(ctx):
@@ -84,6 +94,11 @@ async def unban(ctx, *, member):
 @client.command()
 async def clear(ctx, amount : int):
     await ctx.channel.purge(limit = amount)
+
+@clear.error
+async def clearError(ctx, error):
+    if isinstance(error, commands.MissingRequiredArgument):
+        await ctx.send("So, uh, how many messages do you want to delete? Let's try that again shall we?")
 
 @tasks.loop(seconds = 10)
 async def changeStatus():
