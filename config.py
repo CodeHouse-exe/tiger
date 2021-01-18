@@ -4,7 +4,7 @@ prefix = "!"
 # CUSTOMISE
 onMemberJoin = "just joined the server."
 onMemberRemove = "just left the server."
-status = ["you like he did...", "Space Invaders", "tag with Donald Trump", "absolutely nothing", ]
+status = "tag with Donald Trump"
 
 # CONTROL CENTER
 messageOnJoin = True
