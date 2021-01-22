@@ -1,0 +1,32 @@
+{
+    "custom": [
+        {
+            "prefix": "!",
+            "onMemberJoin": "just joined the server.",
+            "onMemberRemove": "just left the server."
+        }
+    ],
+    "control": [
+        {
+            "messageOnJoin": true,
+            "messageOnRemove": true,
+            "ping": true,
+            "_8Ball": true,
+            "customStatus": true
+        }
+    ],
+    "status": [
+        {
+            "message": "you like he did..."
+        },
+        {
+            "message": "Space Invaders"
+        },
+        {
+            "message": "tag with Donald Trump"
+        },
+        {
+            "message": "absolutely nothing"
+        }
+    ]
+}
