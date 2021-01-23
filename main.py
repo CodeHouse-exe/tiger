@@ -27,7 +27,7 @@ if config.messageOnRemove == True:
 @client.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
-        await ctx.send('I know no such thing.')
+        await ctx.send(config.commandNotFound)
 
 @client.command()
 async def ping(ctx):
@@ -48,7 +48,7 @@ async def spam(ctx, amount : int):
 @spam.error
 async def spamError(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
-        await ctx.send("So, uh, how many messages do you want me to send? Let's try that again shall we?")
+        await ctx.send(config.spamMissingArg)
 
 @client.command(aliases = ["surprise", "rr"])
 async def rickroll(ctx):
@@ -101,9 +101,9 @@ async def clear(ctx, amount : int):
 @clear.error
 async def clearError(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
-        await ctx.send("So, uh, how many messages do you want to delete? Let's try that again shall we?")
+        await ctx.send(config.clearMissingArg)
     elif isinstance(error, commands.MissingPermissions):
-        await ctx.send("You can't do that. Ask an admin")
+        await ctx.send(config.missingPerms)
 
 @tasks.loop(minutes=config.statusInterval)
 async def changeStatus():

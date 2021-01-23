@@ -14,3 +14,9 @@ ping = True
 _8Ball = True
 customStatus = True
 statusInterval = 10 # minutes
+
+# ERROR MESSAGES
+clearMissingArg = "So, uh, how many messages do you want me to delete?"
+commandNotFound = "I know no such thing."
+missingPerms = "You can't do that, cheeky. Ask an admin."
+spamMissingArg = "So, uh, how many messages do you want me to send?"
