@@ -7,10 +7,12 @@ import tokens
 import time
 
 client = commands.Bot(command_prefix = config.prefix)
+status = cycle(config.status)
 
 @client.event
 async def on_ready():
     print(f'[{time.time}] Client ready.')
+    changeStatus.start()
 
 if config.messageOnJoin == True:
     @client.event
@@ -105,7 +107,6 @@ async def clearError(ctx, error):
 
 @tasks.loop(seconds=15)
 async def changeStatus():
-    status = cycle(config.status)
-    await client.change_presence(activity = discord.Game(next(status)))
+    await client.change_presence(activity=discord.Game(next(status)))
 
 client.run(tokens.token)
