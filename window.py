@@ -1,6 +1,5 @@
 import tkinter
 import json
-from main import _output
 
 w = tkinter.Tk()
 w.geometry("600x600")
@@ -48,6 +47,6 @@ customStatusInteger.place(x = 1, y = 240)
 runButton.place(x = 1, y = 210)
 
 while True:
-    runButton = tkinter.Button(w, text = _output, command = start)
+    runButton.configure(text = _output)
 
 w.mainloop()

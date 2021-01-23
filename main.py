@@ -11,17 +11,20 @@ status = cycle(config.status)
 
 @client.event
 async def on_ready():
+    global _output
     _output = print(f'[{time.time}] Client ready.')
     changeStatus.start()
 
 if config.messageOnJoin == True:
     @client.event
     async def on_member_join(member):
+        global _output
         _output = print(f'[{time.time}] {member} {config.onMemberJoin}')
 
 if config.messageOnRemove == True:
     @client.event
     async def on_member_remove(member):
+        global _output
         _output = print(f'[{time.time}] {member} {config.onMemberRemove}')
 
 @client.event
@@ -61,6 +64,7 @@ async def rickroll(ctx):
 @client.command()
 @commands.bot_has_permissions(kick_members = True)
 async def kick(ctx, member : discord.Member, *, reason = None):
+    global _output
     await member.kick(reason = reason)
     await ctx.send(f"Kicked {member.mention} ")
     if reason == None:
@@ -71,6 +75,7 @@ async def kick(ctx, member : discord.Member, *, reason = None):
 @client.command()
 @commands.bot_has_permissions(ban_members = True)
 async def ban(ctx, member : discord.Member, *, reason = None):
+    global _output
     if reason == None:
         await member.ban(reason = reason)
         await ctx.send(f"Banned {member.mention} for no reason, apparently.")
