@@ -10,9 +10,6 @@ client = commands.Bot(command_prefix = config.prefix)
 
 @client.event
 async def on_ready():
-    if config.customStatus == True:
-        await client.change_presence(status = discord.Status.online, activity = discord.Game(config.status))
-    
     print(f'[{time.time}] Client ready.')
 
 if config.messageOnJoin == True:
@@ -106,9 +103,9 @@ async def clearError(ctx, error):
     elif isinstance(error, commands.MissingPermissions):
         await ctx.send("You can't do that. Ask an admin")
 
-@tasks.loop(seconds = 10)
+@tasks.loop(seconds=15)
 async def changeStatus():
-    status = cycle([config.status])
+    status = cycle(config.status)
     await client.change_presence(activity = discord.Game(next(status)))
 
 client.run(tokens.token)
