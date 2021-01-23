@@ -5,6 +5,7 @@ from itertools import cycle
 import random
 import tokens
 import time
+import window
 
 client = commands.Bot(command_prefix = config.prefix)
 status = cycle(config.status)
