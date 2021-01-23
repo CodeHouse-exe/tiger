@@ -13,4 +13,4 @@ messageOnRemove = True
 ping = True
 _8Ball = True
 customStatus = True
-statusInterval = 10 # seconds
+statusInterval = 10 # minutes

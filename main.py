@@ -105,7 +105,7 @@ async def clearError(ctx, error):
     elif isinstance(error, commands.MissingPermissions):
         await ctx.send("You can't do that. Ask an admin")
 
-@tasks.loop(seconds=15)
+@tasks.loop(minutes=config.statusInterval)
 async def changeStatus():
     await client.change_presence(activity=discord.Game(next(status)))
 
