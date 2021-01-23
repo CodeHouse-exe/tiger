@@ -78,6 +78,8 @@ canvas = tkinter.Canvas(w, width=600, height=300)
 img = tkinter.PhotoImage(file="icon/logo_small.png")
 canvas.create_image(20, 20, anchor="nw", image=img)
 
+scrollbar = tkinter.Scrollbar(w)
+
 title_custom.place(x=1, y=1)
 text_prefix.place(x=1, y=50)
 input_prefix.place(x=230, y=50)
@@ -98,6 +100,9 @@ checkbox_customStatus.place(x=1, y=330)
 
 button_save.place(x=1, y=380)
 canvas.place(x=80, y=420)
+scrollbar.pack(side="right", fill="y")
+scrollbar.config(command=canvas.yview)
+
 input_prefix.focus_set()
 
 w.mainloop()
