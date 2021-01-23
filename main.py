@@ -8,6 +8,7 @@ import time
 import tkinter
 import json
 botStart = 0
+_output = str(0)
 
 w = tkinter.Tk()
 w.geometry("600x600")
@@ -15,6 +16,12 @@ w.title("tigerPanel (Universal) v0.0.1")
 
 def nameInp():
     global customStatusInterval
+    global oJC
+    global oRC
+    global pC
+    global _8BC
+    global sC
+    global interval
     oJC = valueOJC.get()
     oRC = valueORC.get()
     pC = valuePC.get()
@@ -57,7 +64,7 @@ runButton.place(x = 1, y = 210)
 
 w.mainloop()
 
-if botStart = 1:
+if botStart == 1:
     client = commands.Bot(command_prefix = config.prefix)
     status = cycle(config.status)
 
