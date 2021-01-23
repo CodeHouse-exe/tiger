@@ -15,12 +15,12 @@ async def on_ready():
 if config.messageOnJoin == True:
     @client.event
     async def on_member_join(member):
-        print(f'[{time.time}] {member} ' + config.onMemberJoin)
+        print(f'[{time.time}] {member} {config.onMemberJoin}')
 
 if config.messageOnRemove == True:
     @client.event
     async def on_member_remove(member):
-        print(f'[{time.time}] {member} ' + config.onMemberRemove)
+        print(f'[{time.time}] {member} {config.onMemberRemove}')
 
 @client.event
 async def on_command_error(ctx, error):
