@@ -5,25 +5,24 @@ from itertools import cycle
 import random
 import tokens
 import time
-import window
 
 client = commands.Bot(command_prefix = config.prefix)
 status = cycle(config.status)
 
 @client.event
 async def on_ready():
-    print(f'[{time.time}] Client ready.')
+    _output = print(f'[{time.time}] Client ready.')
     changeStatus.start()
 
 if config.messageOnJoin == True:
     @client.event
     async def on_member_join(member):
-        print(f'[{time.time}] {member} {config.onMemberJoin}')
+        _output = print(f'[{time.time}] {member} {config.onMemberJoin}')
 
 if config.messageOnRemove == True:
     @client.event
     async def on_member_remove(member):
-        print(f'[{time.time}] {member} {config.onMemberRemove}')
+        _output = print(f'[{time.time}] {member} {config.onMemberRemove}')
 
 @client.event
 async def on_command_error(ctx, error):
@@ -65,9 +64,9 @@ async def kick(ctx, member : discord.Member, *, reason = None):
     await member.kick(reason = reason)
     await ctx.send(f"Kicked {member.mention} ")
     if reason == None:
-        print(f'[{time.time}] Kicked {member.name}#{member.discriminator} - no reason given.')
+        _output = print(f'[{time.time}] Kicked {member.name}#{member.discriminator} - no reason given.')
     elif reason != None:
-        print(f"[{time.time}] Kicked {member.name}#{member.discriminator} for {reason}")
+        _output = print(f"[{time.time}] Kicked {member.name}#{member.discriminator} for {reason}")
 
 @client.command()
 @commands.bot_has_permissions(ban_members = True)
@@ -75,11 +74,11 @@ async def ban(ctx, member : discord.Member, *, reason = None):
     if reason == None:
         await member.ban(reason = reason)
         await ctx.send(f"Banned {member.mention} for no reason, apparently.")
-        print(f"[{time.time}] Banned {member.mention} - no reason given.")
+        _output = print(f"[{time.time}] Banned {member.mention} - no reason given.")
     elif reason != None:
         await member.ban(reason = reason)
         await ctx.send(f"Banned {member.mention} for {reason}")
-        print(f"[{time.time}] Banned {member.mention} for {reason}")
+        _output = print(f"[{time.time}] Banned {member.mention} for {reason}")
 
 @client.command()
 @commands.bot_has_permissions(ban_members = True)

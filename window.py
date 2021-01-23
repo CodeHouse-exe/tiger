@@ -1,5 +1,6 @@
 import tkinter
 import json
+from main import _output
 
 w = tkinter.Tk()
 w.geometry("600x600")
@@ -33,7 +34,7 @@ customStatusCheckbutton = tkinter.Checkbutton(w, text="Enable custom status", va
 customStatusLabel = tkinter.Label(w, text="Status Interval:")
 customStatusInterval = tkinter.Entry(w)
 customStatusInteger = tkinter.Button(w, text = "Click here once options are chosen", command = nameInp)
-runButton = tkinter.Button(w, text = "Run", command = start)
+runButton = tkinter.Button(w, text = _output, command = start)
 
 messageOnJoinCheckbutton.place(x=1, y=1)
 messageOnRemoveCheckbutton.place(x=1, y=30)
@@ -45,4 +46,8 @@ customStatusInterval.place(x=100, y=180)
 customStatusInterval.focus_set()
 customStatusInteger.place(x = 1, y = 240)
 runButton.place(x = 1, y = 210)
+
+while True:
+    runButton = tkinter.Button(w, text = _output, command = start)
+
 w.mainloop()
