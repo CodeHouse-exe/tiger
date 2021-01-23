@@ -7,7 +7,6 @@ import tokens
 import time
 import tkinter
 import json
-botStart = 0
 _output = str(0)
 
 w = tkinter.Tk()
@@ -30,10 +29,9 @@ def nameInp():
     interval = customStatusInterval.get()   #Der interval ist die Zahl die du eingegeben hast
 
 def start():
-    global botStart
     w.destroy()
     print("Starting...")
-    botStart = 1
+    botStart()
 
 valueOJC = tkinter.IntVar()                 #Das muss da hin, weil das ein integer ist der dann returnt werden muss, und das tkinter.IntVar() gibt diese zahl als int zurück, was weiter benutzt werden kann
 valueORC = tkinter.IntVar()
@@ -64,7 +62,7 @@ runButton.place(x = 1, y = 210)
 
 w.mainloop()
 
-if botStart == 1:
+def botStart():
     client = commands.Bot(command_prefix = config.prefix)
     status = cycle(config.status)
 
