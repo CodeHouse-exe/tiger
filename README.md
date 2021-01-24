@@ -38,7 +38,7 @@ Current Version: v0.0.1-a
 
 - Custom Status:
     - Enter the desired status messages into the config.json
-    - (Will soon be integrated into the GUI
+    - (Will soon be integrated into the GUI)
 
 # What the bot cannot do:
 - Your homework
