@@ -82,7 +82,7 @@ checkbox_8ball = tkinter.Checkbutton(w, text="Enable 8Ball-command", variable=va
 checkbox_customStatus = tkinter.Checkbutton(w, text="Enable custom status", variable=valueCS)
 
 text_token = tkinter.Label(w, text="Your Discord Application token:")
-input_token = tkinter.Entry(w)
+input_token = tkinter.Entry(w, show="*", width=50,)
 
 button_save = tkinter.Button(w, text="Save & Close", command=save_input)
 
