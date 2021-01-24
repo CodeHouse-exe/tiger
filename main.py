@@ -3,7 +3,6 @@ import discord
 from discord.ext import commands, tasks
 from itertools import cycle
 import random
-import tokens
 import time
 
 client = commands.Bot(command_prefix = config.prefix)
