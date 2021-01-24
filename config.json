@@ -2,22 +2,22 @@
     "custom": [
         {
             "prefix": "!",
-            "onMemberJoin": "has arrived.",
-            "onMemberRemove": "has departed."
+            "onMemberJoin": "just joined the server.",
+            "onMemberRemove": "just left the server."
         }
     ],
     "control": [
         {
-            "messageOnJoin": false,
-            "messageOnRemove": false,
-            "ping": false,
-            "_8Ball": false,
-            "customStatus": false
+            "messageOnJoin": true,
+            "messageOnRemove": true,
+            "ping": true,
+            "_8Ball": true,
+            "customStatus": true
         }
     ],
     "token": [
         {
-            "token": ""
+            "token": "Nzk5MzQzNjE0NDU0NjYxMTYw.YACMwA.xXlTmuIwjjgY2Z-57N_tHqAYcJU"
         }
     ]
 }

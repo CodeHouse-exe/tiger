@@ -43,38 +43,27 @@ def save_input():
     global input_member_join
     global input_member_remove
     global input_token
-    
-    custom_prefix = input_prefix.get()
-    custom_member_join = input_member_join.get()
-    custom_member_remove = input_member_remove.get()
-
-    messageOnJoin = valueOJC.get()
-    messageOnRemove = valueORC.get()
-    ping = valueP.get()
-    customStatus = valueCS.get()
-    _8Ball = value8B.get()
-    customToken = valueToken.get()
 
     data = {
         "custom": [
             {
-            "prefix": custom_prefix,
-            "onMemberJoin": custom_member_join,
-            "onMemberRemove": custom_member_remove 
+            "prefix": input_prefix.get(),
+            "onMemberJoin": input_member_join.get(),
+            "onMemberRemove": input_member_remove.get() 
             }
         ],
         "control": [
             {
-                "messageOnJoin": messageOnJoin,
-                "messageOnRemove": messageOnRemove,
-                "ping": ping,
-                "_8Ball": _8Ball,
-                "customStatus": customStatus 
+                "messageOnJoin": valueOJC.get(),
+                "messageOnRemove": valueORC.get(),
+                "ping": valueP.get(),
+                "_8Ball": value8B.get(),
+                "customStatus": valueCS.get() 
             }
         ],
         "token": [
             {
-                "token": customToken
+                "token": input_token.get()
             }
         ]
     }
@@ -94,6 +83,7 @@ valueCS.set(get_var("cS"))
 value8B = tkinter.BooleanVar()
 value8B.set(get_var("_8Ball"))
 valueToken = tkinter.StringVar()
+valueToken.set(get_var("token"))
 
 title_custom = tkinter.Label(w, text="Customise", font=("bold", 18))
 
@@ -122,7 +112,7 @@ checkbox_8ball = tkinter.Checkbutton(w, text="Enable 8Ball-command", variable=va
 checkbox_customStatus = tkinter.Checkbutton(w, text="Enable custom status", variable=valueCS)
 
 text_token = tkinter.Label(w, text="Your Discord Application token:")
-input_token = tkinter.Entry(w, show="*", width=50,)
+input_token = tkinter.Entry(w, show="*", width=50)
 input_token.insert("end", get_var("token"))
 
 button_save = tkinter.Button(w, text="Save & Close", command=save_input)
