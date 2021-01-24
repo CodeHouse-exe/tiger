@@ -110,8 +110,8 @@ async def clearError(ctx, error):
     elif isinstance(error, commands.MissingPermissions):
         await ctx.send(config.missingPerms)
 
-@tasks.loop(minutes=config.statusInterval)
+@tasks.loop(minutes=15)
 async def changeStatus():
     await client.change_presence(activity=discord.Game(next(status)))
 
-client.run(tokens.token)
+client.run(config.token)

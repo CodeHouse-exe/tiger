@@ -9,6 +9,7 @@ def save_input():
     global input_prefix
     global input_member_join
     global input_member_remove
+    global input_token
     
     custom_prefix = input_prefix.get()
     custom_member_join = input_member_join.get()
@@ -19,6 +20,7 @@ def save_input():
     ping = valueP.get()
     customStatus = valueCS.get()
     _8Ball = value8B.get()
+    customToken = valueToken.get()
 
     data = {
         "custom": [
@@ -36,6 +38,11 @@ def save_input():
                 "_8Ball": _8Ball,
                 "customStatus": customStatus 
             }
+        ],
+        "token": [
+            {
+                "token": customToken
+            }
         ]
     }
     
@@ -48,6 +55,7 @@ valueOJC = tkinter.BooleanVar()
 valueORC = tkinter.BooleanVar()
 valueCS = tkinter.BooleanVar()
 value8B = tkinter.BooleanVar()
+valueToken = tkinter.StringVar()
 
 title_custom = tkinter.Label(w, text="Customise", font=("bold", 18))
 
@@ -71,6 +79,9 @@ checkbox_ping = tkinter.Checkbutton(w, text="Enable ping-command", variable=valu
 checkbox_8ball = tkinter.Checkbutton(w, text="Enable 8Ball-command", variable=value8B)
 
 checkbox_customStatus = tkinter.Checkbutton(w, text="Enable custom status", variable=valueCS)
+
+text_token = tkinter.Label(w, text="Your Discord Application token:")
+input_token = tkinter.Entry(w)
 
 button_save = tkinter.Button(w, text="Save & Close", command=save_input)
 
@@ -96,7 +107,10 @@ checkbox_ping.place(x=1, y=270)
 checkbox_8ball.place(x=1, y=300)
 checkbox_customStatus.place(x=1, y=330)
 
-button_save.place(x=1, y=380)
+text_token.place(x=1, y=360)
+input_token.place(x=230, y=360)
+
+button_save.place(x=1, y=390)
 canvas.place(x=80, y=420)
 input_prefix.focus_set()
 
