@@ -4,6 +4,7 @@ import tkinter
 w = tkinter.Tk()
 w.geometry("720x720")
 w.title("tigerPanel (macOS) v0.0.1")
+w.iconbitmap("icon/logo_small_icon_only_inverted.ico")
 
 def save_input():
     global input_prefix
