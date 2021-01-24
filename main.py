@@ -4,6 +4,12 @@ from discord.ext import commands, tasks
 from itertools import cycle
 import random
 import time
+from datetime import datetime
+
+def getTime():
+    dateTimeObj = datetime.now()
+    timeNow = f"{dateTimeObj.hour}:{dateTimeObj.minute}:{dateTimeObj.second}"
+    return timeNow
 
 client = commands.Bot(command_prefix = config.prefix)
 status = cycle(config.status)
@@ -11,20 +17,20 @@ status = cycle(config.status)
 @client.event
 async def on_ready():
     global _output
-    _output = print(f'[{time.time}] Client ready.')
+    _output = print(f'[{getTime()}] Client ready.')
     changeStatus.start()
 
 if config.messageOnJoin == True:
     @client.event
     async def on_member_join(member):
         global _output
-        _output = print(f'[{time.time}] {member} {config.onMemberJoin}')
+        _output = print(f'[{getTime()}] {member} {config.onMemberJoin}')
 
 if config.messageOnRemove == True:
     @client.event
     async def on_member_remove(member):
         global _output
-        _output = print(f'[{time.time}] {member} {config.onMemberRemove}')
+        _output = print(f'[{getTime()}] {member} {config.onMemberRemove}')
 
 @client.event
 async def on_command_error(ctx, error):
@@ -67,9 +73,9 @@ async def kick(ctx, member : discord.Member, *, reason = None):
     await member.kick(reason = reason)
     await ctx.send(f"Kicked {member.mention} ")
     if reason == None:
-        _output = print(f'[{time.time}] Kicked {member.name}#{member.discriminator} - no reason given.')
+        _output = print(f'[{getTime()}] Kicked {member.name}#{member.discriminator} - no reason given.')
     elif reason != None:
-        _output = print(f"[{time.time}] Kicked {member.name}#{member.discriminator} for {reason}")
+        _output = print(f"[{getTime()}] Kicked {member.name}#{member.discriminator} for {reason}")
 
 @client.command()
 @commands.bot_has_permissions(ban_members = True)
@@ -78,11 +84,11 @@ async def ban(ctx, member : discord.Member, *, reason = None):
     if reason == None:
         await member.ban(reason = reason)
         await ctx.send(f"Banned {member.mention} for no reason, apparently.")
-        _output = print(f"[{time.time}] Banned {member.mention} - no reason given.")
+        _output = print(f"[{getTime()}] Banned {member.mention} - no reason given.")
     elif reason != None:
         await member.ban(reason = reason)
         await ctx.send(f"Banned {member.mention} for {reason}")
-        _output = print(f"[{time.time}] Banned {member.mention} for {reason}")
+        _output = print(f"[{getTime()}] Banned {member.mention} for {reason}")
 
 @client.command()
 @commands.bot_has_permissions(ban_members = True)
