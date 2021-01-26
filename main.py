@@ -8,9 +8,9 @@ from datetime import datetime
 
 
 def get_time():
-    dateTimeObj = datetime.now()
-    timeNow = f"{dateTimeObj.hour}:{dateTimeObj.minute}:{dateTimeObj.second}"
-    return timeNow
+    date_time_obj = datetime.now()
+    time_now = f"{date_time_obj.hour}:{date_time_obj.minute}:{date_time_obj.second}"
+    return time_now
 
 
 client = commands.Bot(command_prefix=config.prefix)
@@ -19,28 +19,25 @@ status = cycle(config.status)
 
 @client.event
 async def on_ready():
-    global _output
     print(f'[{get_time()}] Client ready.')
     change_status.start()
 
 
-if config.messageOnJoin:
+if config.message_on_join:
     @client.event
     async def on_member_join(member):
-        global _output
-        _output = print(f'[{get_time()}] {member} {config.onMemberJoin}')
+        print(f'[{get_time()}] {member} {config.on_member_join}')
 
-if config.messageOnRemove:
+if config.message_on_remove:
     @client.event
     async def on_member_remove(member):
-        global _output
-        print(f'[{get_time()}] {member} {config.onMemberRemove}')
+        print(f'[{get_time()}] {member} {config.on_member_remove}')
 
 
 @client.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
-        await ctx.send(config.commandNotFound)
+        await ctx.send(config.command_not_found)
 
 
 @client.command()
@@ -65,7 +62,7 @@ async def spam(ctx, amount: int):
 @spam.error
 async def spam_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
-        await ctx.send(config.spamMissingArg)
+        await ctx.send(config.spam_missing_arg)
 
 
 @client.command(aliases=["surprise", "rr"])
@@ -80,7 +77,6 @@ async def rickroll(ctx):
 @client.command()
 @commands.bot_has_permissions(kick_members=True)
 async def kick(ctx, member: discord.Member, *, reason=None):
-    global _output
     await member.kick(reason=reason)
     await ctx.send(f"Kicked {member.mention} ")
     if reason is None:
@@ -92,7 +88,6 @@ async def kick(ctx, member: discord.Member, *, reason=None):
 @client.command()
 @commands.bot_has_permissions(ban_members=True)
 async def ban(ctx, member: discord.Member, *, reason=None):
-    global _output
     if reason is None:
         await member.ban(reason=reason)
         await ctx.send(f"Banned {member.mention} for no reason, apparently.")
@@ -126,9 +121,9 @@ async def clear(ctx, amount: int):
 @clear.error
 async def clear_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
-        await ctx.send(config.clearMissingArg)
+        await ctx.send(config.clear_missing_arg)
     elif isinstance(error, commands.MissingPermissions):
-        await ctx.send(config.missingPerms)
+        await ctx.send(config.missing_perms)
 
 
 @tasks.loop(minutes=15)

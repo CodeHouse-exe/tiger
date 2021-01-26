@@ -16,16 +16,16 @@ def get_var(var):
             return key["prefix"]
     elif var == "oMJ":
         for key in data["custom"]:
-            return key["onMemberJoin"]
+            return key["on_member_join"]
     elif var == "oMR":
         for key in data["custom"]:
-            return key["onMemberRemove"]
+            return key["on_member_remove"]
     elif var == "mOJ":
         for key in data["control"]:
-            return key["messageOnRemove"]
+            return key["message_on_remove"]
     elif var == "mOR":
         for key in data["control"]:
-            return key["messageOnRemove"]
+            return key["message_on_remove"]
     elif var == "ping":
         for key in data["control"]:
             return key["ping"]
@@ -34,7 +34,7 @@ def get_var(var):
             return key["_8_ball"]
     elif var == "cS":
         for key in data["control"]:
-            return key["customStatus"]
+            return key["custom_status"]
     elif var == "token":
         for key in data["token"]:
             return key["token"]
@@ -50,17 +50,17 @@ def save_input():
         "custom": [
             {
                 "prefix": input_prefix.get(),
-                "onMemberJoin": input_member_join.get(),
-                "onMemberRemove": input_member_remove.get()
+                "on_member_join": input_member_join.get(),
+                "on_member_remove": input_member_remove.get()
             }
         ],
         "control": [
             {
-                "messageOnJoin": valueOJC.get(),
-                "messageOnRemove": valueORC.get(),
+                "message_on_join": valueOJC.get(),
+                "message_on_remove": valueORC.get(),
                 "ping": valueP.get(),
                 "_8_ball": value8B.get(),
-                "customStatus": valueCS.get()
+                "custom_status": valueCS.get()
             }
         ],
         "token": [
