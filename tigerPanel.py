@@ -6,6 +6,7 @@ w.geometry("720x720")
 w.title("tigerPanel (Universal) v0.0.1")
 w.iconbitmap("icon/logo_small_icon_only_inverted.ico")
 
+
 def get_var(var):
     with open("config.json") as f:
         data = json.load(f)
@@ -28,15 +29,16 @@ def get_var(var):
     elif var == "ping":
         for key in data["control"]:
             return key["ping"]
-    elif var == "_8Ball":
+    elif var == "_8_ball":
         for key in data["control"]:
-            return key["_8Ball"]
+            return key["_8_ball"]
     elif var == "cS":
         for key in data["control"]:
             return key["customStatus"]
     elif var == "token":
         for key in data["token"]:
             return key["token"]
+
 
 def save_input():
     global input_prefix
@@ -47,9 +49,9 @@ def save_input():
     data = {
         "custom": [
             {
-            "prefix": input_prefix.get(),
-            "onMemberJoin": input_member_join.get(),
-            "onMemberRemove": input_member_remove.get() 
+                "prefix": input_prefix.get(),
+                "onMemberJoin": input_member_join.get(),
+                "onMemberRemove": input_member_remove.get()
             }
         ],
         "control": [
@@ -57,8 +59,8 @@ def save_input():
                 "messageOnJoin": valueOJC.get(),
                 "messageOnRemove": valueORC.get(),
                 "ping": valueP.get(),
-                "_8Ball": value8B.get(),
-                "customStatus": valueCS.get() 
+                "_8_ball": value8B.get(),
+                "customStatus": valueCS.get()
             }
         ],
         "token": [
@@ -67,10 +69,11 @@ def save_input():
             }
         ]
     }
-    
+
     with open("config.json", "w") as f:
         json.dump(data, f, indent=4)
     w.destroy()
+
 
 valueP = tkinter.BooleanVar()
 valueP.set(get_var("ping"))
@@ -81,7 +84,7 @@ valueORC.set(get_var("mOR"))
 valueCS = tkinter.BooleanVar()
 valueCS.set(get_var("cS"))
 value8B = tkinter.BooleanVar()
-value8B.set(get_var("_8Ball"))
+value8B.set(get_var("_8_ball"))
 valueToken = tkinter.StringVar()
 valueToken.set(get_var("token"))
 
@@ -101,9 +104,11 @@ input_member_remove.insert("end", get_var("oMR"))
 
 title_control = tkinter.Label(w, text="Control Panel", font=("bold", 18))
 
-checkbox_on_join = tkinter.Checkbutton(w, text="Output message to console when a player joins", variable = valueOJC)
+checkbox_on_join = tkinter.Checkbutton(w, text="Output message to console when a player joins", variable=valueOJC)
 
-checkbox_on_remove = tkinter.Checkbutton(w, text="Output message to console when a player is removed or leaves the server", variable=valueORC)
+checkbox_on_remove = tkinter.Checkbutton(w,
+                                         text="Output message to console when a player is removed or leaves the server",
+                                         variable=valueORC)
 
 checkbox_ping = tkinter.Checkbutton(w, text="Enable ping-command", variable=valueP)
 
