@@ -117,6 +117,8 @@ async def clearError(ctx, error):
 
 @tasks.loop(minutes=15)
 async def changeStatus():
-    await client.change_presence(activity=discord.Game(next(status)))
+    newStatus = next(status)
+    await client.change_presence(activity=discord.Game(newStatus))
+    print(f"[{getTime()}] Status set to Playing {newStatus}.")
 
 client.run(config.token)
