@@ -107,8 +107,8 @@ title_control = tkinter.Label(w, text="Control Panel", font=("bold", 18))
 checkbox_on_join = tkinter.Checkbutton(w, text="Output message to console when a player joins", variable=valueOJC)
 
 checkbox_on_remove = tkinter.Checkbutton(w,
-                                         text="Output message to console when a player is removed or leaves the server",
-                                         variable=valueORC)
+                                        text="Output message to console when a player is removed or leaves the server",
+                                        variable=valueORC)
 
 checkbox_ping = tkinter.Checkbutton(w, text="Enable ping-command", variable=valueP)
 
