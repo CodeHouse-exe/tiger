@@ -19,5 +19,13 @@
         {
             "token": "Nzk5MzQzNjE0NDU0NjYxMTYw.YACMwA.xXlTmuIwjjgY2Z-57N_tHqAYcJU"
         }
+    ],
+    "error": [
+        {
+            "clearMissingArg": "So, uh, how many messages do you want me to delete?",
+            "commandNotFound": "I know no such thing.",
+            "missingPerms": "You can't do that, cheeky. Ask an admin",
+            "spamMissingArg": "So, uh, how many messages do you want me to delete?"
+        }
     ]
 }
