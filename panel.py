@@ -1,44 +1,11 @@
 import json
 import tkinter
+import config
 
 w = tkinter.Tk()
 w.geometry("720x720")
 w.title("tigerPanel (Universal) v0.0.1")
 w.iconbitmap("icon/logo_small_icon_only_inverted.ico")
-
-
-def get_var(var):
-    with open("config.json") as f:
-        data = json.load(f)
-
-    if var == "prefix":
-        for key in data["custom"]:
-            return key["prefix"]
-    elif var == "oMJ":
-        for key in data["custom"]:
-            return key["on_member_join"]
-    elif var == "oMR":
-        for key in data["custom"]:
-            return key["on_member_remove"]
-    elif var == "mOJ":
-        for key in data["control"]:
-            return key["message_on_remove"]
-    elif var == "mOR":
-        for key in data["control"]:
-            return key["message_on_remove"]
-    elif var == "ping":
-        for key in data["control"]:
-            return key["ping"]
-    elif var == "_8_ball":
-        for key in data["control"]:
-            return key["_8_ball"]
-    elif var == "cS":
-        for key in data["control"]:
-            return key["custom_status"]
-    elif var == "token":
-        for key in data["token"]:
-            return key["token"]
-
 
 def save_input():
     global input_prefix
@@ -76,31 +43,31 @@ def save_input():
 
 
 valueP = tkinter.BooleanVar()
-valueP.set(get_var("ping"))
+valueP.set(config.get_config("control", "ping"))
 valueOJC = tkinter.BooleanVar()
-valueOJC.set(get_var("mOJ"))
+valueOJC.set(config.get_config("control", "messageOnJoin"))
 valueORC = tkinter.BooleanVar()
-valueORC.set(get_var("mOR"))
+valueORC.set(config.get_config("control", "messageOnRemove"))
 valueCS = tkinter.BooleanVar()
-valueCS.set(get_var("cS"))
+valueCS.set(config.get_config("control", "customStatus"))
 value8B = tkinter.BooleanVar()
-value8B.set(get_var("_8_ball"))
+value8B.set(config.get_config("control", "_8Ball"))
 valueToken = tkinter.StringVar()
-valueToken.set(get_var("token"))
+valueToken.set(config.get_config("token", "token"))
 
 title_custom = tkinter.Label(w, text="Customise", font=("bold", 18))
 
 text_prefix = tkinter.Label(w, text="Single Character Command prefix:")
 input_prefix = tkinter.Entry(w, width=1)
-input_prefix.insert("end", get_var("prefix"))
+input_prefix.insert("end", config.get_config("custom", "prefix"))
 
 text_member_join = tkinter.Label(w, text="Message on member join:")
 input_member_join = tkinter.Entry(w, width=25)
-input_member_join.insert("end", get_var("oMJ"))
+input_member_join.insert("end", config.get_config("custom", "onMemberJoin"))
 
 text_member_remove = tkinter.Label(w, text="Message on member remove/leave:")
 input_member_remove = tkinter.Entry(w, width=25)
-input_member_remove.insert("end", get_var("oMR"))
+input_member_remove.insert("end", config.get_config("custom", "onMemberRemove"))
 
 title_control = tkinter.Label(w, text="Control Panel", font=("bold", 18))
 
@@ -118,7 +85,7 @@ checkbox_customStatus = tkinter.Checkbutton(w, text="Enable custom status", vari
 
 text_token = tkinter.Label(w, text="Your Discord Application token:")
 input_token = tkinter.Entry(w, show="*", width=50)
-input_token.insert("end", get_var("token"))
+input_token.insert("end", config.get_config("token", "token"))
 
 button_save = tkinter.Button(w, text="Save & Close", command=save_input)
 
