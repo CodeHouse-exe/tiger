@@ -14,7 +14,7 @@ def get_time():
 
 
 client = commands.Bot(command_prefix=config.get_config("custom", "prefix"))
-status = cycle(config.status)
+status = cycle(config.get_config("custom", "status"))
 
 
 @client.event
@@ -37,7 +37,7 @@ if config.get_config("control", "messageOnRemove"):
 @client.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
-        await ctx.send(config.command_not_found)
+        await ctx.send(config.get_config("error", "commandNotFound"))
 
 
 @client.command()
@@ -62,7 +62,7 @@ async def spam(ctx, amount: int):
 @spam.error
 async def spam_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
-        await ctx.send(config.spam_missing_arg)
+        await ctx.send(config.get_config("error", "spamMissingArg"))
 
 
 @client.command(aliases=["surprise", "rr"])
@@ -121,9 +121,9 @@ async def clear(ctx, amount: int):
 @clear.error
 async def clear_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
-        await ctx.send(config.clear_missing_arg)
+        await ctx.send(config.get_config("error", "clearMissingArg"))
     elif isinstance(error, commands.MissingPermissions):
-        await ctx.send(config.missing_perms)
+        await ctx.send(config.get_config("error", "missingPerms"))
 
 
 @tasks.loop(minutes=15)
