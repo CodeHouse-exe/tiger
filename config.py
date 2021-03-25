@@ -1,22 +1,12 @@
 import json
 
-with open("config.json") as f:
-    data = json.load(f)
+def get_config(category, key):
+    with open("config.json") as f:
+        data = json.load(f)
+        return data[category][0][key]
 
-for key in data["custom"]:
-    prefix = key["prefix"]
-    on_member_join = key["onMemberJoin"]
-    on_member_remove = key["onMemberRemove"]
-
-for key in data["control"]:
-    message_on_join = key["messageOnJoin"]
-    message_on_remove = key["messageOnRemove"]
-    ping = key["ping"]
-    _8_ball = key["_8Ball"]
-    custom_status = key["customStatus"]
-
-for key in data["token"]:
-    token = key["token"]
+def dump_config():
+    pass
 
 status = ["you like he did...", "Space Invaders", "tag with Donald Trump", "absolutely nothing"]
 _8_ball_responses = {"Certainly!", "Absolutely.", "Without a doubt.", "Yes. For definite.", "You can rely on it.",

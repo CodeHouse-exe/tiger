@@ -13,7 +13,7 @@ def get_time():
     return time_now
 
 
-client = commands.Bot(command_prefix=config.prefix)
+client = commands.Bot(command_prefix=config.get_config("custom", "prefix"))
 status = cycle(config.status)
 
 
@@ -23,15 +23,15 @@ async def on_ready():
     change_status.start()
 
 
-if config.message_on_join:
+if config.get_config("control", "messageOnJoin"):
     @client.event
     async def on_member_join(member):
-        print(f'[{get_time()}] {member} {config.on_member_join}')
+        print(f'[{get_time()}] {member} {config.get_config("custom", "onMemberJoin")}')
 
-if config.message_on_remove:
+if config.get_config("control", "messageOnRemove"):
     @client.event
     async def on_member_remove(member):
-        print(f'[{get_time()}] {member} {config.on_member_remove}')
+        print(f'[{get_time()}] {member} {config.get_config("custom", "onMemberRemove")}')
 
 
 @client.event
@@ -133,4 +133,4 @@ async def change_status():
     print(f"[{get_time()}] Status set to Playing {new_status}.")
 
 
-client.run(config.token)
+client.run(config.get_config("token", "token"))
