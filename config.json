@@ -15,6 +15,14 @@
             "customStatus": true
         }
     ],
+    "error": [
+        {
+            "clearMissingArg": "So, uh, how many messages do you want me to delete?",
+            "spamMissingArg": "So, uh, how many messages do you want me to send?",
+            "commandNotFound": "I know no such thing.",
+            "missingPerms": "You can't do that, cheeky. Ask an admin."
+        }
+    ],
     "token": [
         {
             "token": "INSERT TOKEN HERE"
